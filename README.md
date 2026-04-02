@@ -1,6 +1,9 @@
 # 🐷💰 PigJackpot
 
 Sistema de cassino online, focado no gerenciamento de usuários, apostas e transações financeiras.
+---
+
+![Status](https://img.shields.io/badge/Status-Em_desenvolvimento-red)
 
 ---
 ### ⚠️ Observação: Este projeto é apenas para fins educacionais e não envolve dinheiro real.
@@ -35,11 +38,12 @@ O **PigJackpot** é um sistema web desenvolvido em Java que simula um cassino on
 ---
 
 ## 💻 Tecnologias Utilizadas
-
-- Java (Servlet/JSP)
-- MySQL
-- HTML / CSS
-- JDBC
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![Servlet](https://img.shields.io/badge/Java_Servlet-007396?style=for-the-badge&logo=java&logoColor=white)
+![JDBC](https://img.shields.io/badge/JDBC-003B57?style=for-the-badge&logo=database&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 
 ---
 
