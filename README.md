@@ -7,11 +7,6 @@ Sistema de cassino online, focado no gerenciamento de usuários, apostas e trans
 
 ---
 ### ⚠️ Observação: Este projeto é apenas para fins educacionais e não envolve dinheiro real.
-
-<p align="center">
-  <img src="./imgs/PoicoPrincipal.png" alt="Mascote Pig Syndicate" width="400"/>
-</p>
-
 ---
 
 ## 🎰 Sobre o Projeto
