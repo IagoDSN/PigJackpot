@@ -7,13 +7,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Olá: </h1>
-    </body>
-</html>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilo.css">
+
+<nav>
+    <ul>
+        <li><a href="${pageContext.request.contextPath}/index.jsp">HOME</a></li>
+        <li><a href="${pageContext.request.contextPath}${URL_BASE}/CidadeControlador?opcao=cancelar">CIDADE</a></li>
+        <li><a href="${pageContext.request.contextPath}${URL_BASE}/FuncionarioControlador?opcao=cancelar">FUNCIONÁRIO</a></li>
+        <li><a href="${pageContext.request.contextPath}/login.jsp">LOGIN</a></li>
+        <li><a href="${pageContext.request.contextPath}/logout.jsp">LOGOUT</a></li>
+
+
+    </ul>
+
+</nav>
