@@ -5,8 +5,8 @@
 package br.edu.ifsuldeminas.infoh2026.controlador;
 
 import br.edu.ifsuldeminas.infoh2026.servico.WebConstante;
-import br.edu.ifsuldeminas.infoh2026.modelo.dao.UsuarioDAO;
-import br.edu.ifsuldeminas.infoh2026.modelo.entidade.Usuario;
+import br.edu.ifsuldeminas.infoh2026.modelo.dao.ConquistaDAO;
+import br.edu.ifsuldeminas.infoh2026.modelo.entidade.Conquista;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,27 +14,22 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.List;
 
 /**
  *
  * @author 13410289682
  */
-@WebServlet(WebConstante.BASE_PATH + "/UsuarioControlador")
-public class UsuarioControlador extends HttpServlet {
+@WebServlet(WebConstante.BASE_PATH + "/ConquistaControlador")
+public class ConquistaControlador extends HttpServlet {
 
-    Usuario objUsuario = new Usuario();
-    UsuarioDAO objUsuarioDAO = new UsuarioDAO();
+    Conquista objConquista = new Conquista();
+    ConquistaDAO objConquistaDAO = new ConquistaDAO();
     
-    String id_usuario = "";
+    String id_conquista = "";
     String nome = "";
-    String senha = "";
-    String email = "";
-    String endereco = "";
-    String cpf = "";
-    String data_cadastro = "";
-    String dataNascimento = "";
+    String descricao = "";
+    String recompensa = "";
     String opcao = "";
 
     @Override
@@ -45,14 +40,10 @@ public class UsuarioControlador extends HttpServlet {
                 opcao = "cadastrar";
             }
             
-            id_usuario = request.getParameter("id_usuario");
+            id_conquista = request.getParameter("id_conquista");
             nome = request.getParameter("nome");
-            senha = request.getParameter("senha");
-            email = request.getParameter("email");
-            endereco = request.getParameter("endereco");
-            cpf = request.getParameter("cpf");
-            data_cadastro = request.getParameter("data_cadastro");
-            dataNascimento = request.getParameter("dataNascimento");
+            descricao = request.getParameter("descricao");
+            recompensa = request.getParameter("recompensa");
 
             switch (opcao) {
                 case "cadastrar":
@@ -78,99 +69,77 @@ public class UsuarioControlador extends HttpServlet {
             }
 
         } catch (NumberFormatException e) {
-            response.getWriter().println("Erro: ID inválido - " + e.getMessage());
+            response.getWriter().println("Erro: Valor numérico inválido - " + e.getMessage());
         } catch (IllegalArgumentException ex) {
             response.getWriter().println("Erro: " + ex.getMessage());
         }
     }
 
     private void cadastrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        objUsuario.setNome(nome);
-        objUsuario.setSenha(senha);
-        objUsuario.setEmail(email);
-        objUsuario.setEndereco(endereco);
-        objUsuario.setCpf(cpf);
+        objConquista.setNome(nome);
+        objConquista.setDescricao(descricao);
+        if (recompensa != null && !recompensa.isEmpty()) {
+            objConquista.setRecompensa(Double.valueOf(recompensa.replace(",", ".")));
+        }
         
-        if (data_cadastro != null && !data_cadastro.isEmpty())
-            objUsuario.setData_cadastro(Date.valueOf(data_cadastro));
-        if (dataNascimento != null && !dataNascimento.isEmpty())
-            objUsuario.setDataNascimento(Date.valueOf(dataNascimento));
-
-        objUsuarioDAO.salvar(objUsuario);
-        request.setAttribute("mensagem", "Usuário cadastrado com sucesso!");
+        objConquistaDAO.salvar(objConquista);
+        request.setAttribute("mensagem", "Conquista cadastrada com sucesso!");
         encaminharParaPagina(request, response);
     }
 
     private void enviarAlterar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("id_usuario", id_usuario);
+        request.setAttribute("id_conquista", id_conquista);
         request.setAttribute("nome", nome);
-        request.setAttribute("senha", senha);
-        request.setAttribute("email", email);
-        request.setAttribute("endereco", endereco);
-        request.setAttribute("cpf", cpf);
-        request.setAttribute("data_cadastro", data_cadastro);
-        request.setAttribute("dataNascimento", dataNascimento);
+        request.setAttribute("descricao", descricao);
+        request.setAttribute("recompensa", recompensa);
         
         request.setAttribute("opcao", "confirmarAlterar");
-        request.setAttribute("mensagem", "Edite os dados do usuário");
+        request.setAttribute("mensagem", "Edite os dados da conquista");
         encaminharParaPagina(request, response);
     }
 
     private void confirmarAlterar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        objUsuario.setId_usuario(Integer.valueOf(id_usuario));
-        objUsuario.setNome(nome);
-        objUsuario.setSenha(senha);
-        objUsuario.setEmail(email);
-        objUsuario.setEndereco(endereco);
-        objUsuario.setCpf(cpf);
+        objConquista.setId_conquista(Integer.valueOf(id_conquista));
+        objConquista.setNome(nome);
+        objConquista.setDescricao(descricao);
+        if (recompensa != null && !recompensa.isEmpty()) {
+            objConquista.setRecompensa(Double.valueOf(recompensa.replace(",", ".")));
+        }
         
-        if (data_cadastro != null && !data_cadastro.isEmpty())
-            objUsuario.setData_cadastro(Date.valueOf(data_cadastro));
-        if (dataNascimento != null && !dataNascimento.isEmpty())
-            objUsuario.setDataNascimento(Date.valueOf(dataNascimento));
-
-        objUsuarioDAO.alterar(objUsuario);
+        objConquistaDAO.alterar(objConquista);
         encaminharParaPagina(request, response);
     }
 
     private void enviarExcluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("id_usuario", id_usuario);
+        request.setAttribute("id_conquista", id_conquista);
         request.setAttribute("nome", nome);
-        request.setAttribute("senha", senha);
-        request.setAttribute("email", email);
-        request.setAttribute("endereco", endereco);
-        request.setAttribute("cpf", cpf);
-        request.setAttribute("data_cadastro", data_cadastro);
-        request.setAttribute("dataNascimento", dataNascimento);
+        request.setAttribute("descricao", descricao);
+        request.setAttribute("recompensa", recompensa);
         
         request.setAttribute("opcao", "confirmarExcluir");
-        request.setAttribute("mensagem", "Confirme os dados para excluir");
+        request.setAttribute("mensagem", "Confirme os dados e clique em salvar para excluir");
         encaminharParaPagina(request, response);
     }
 
     private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        objUsuario.setId_usuario(Integer.valueOf(id_usuario));
-        objUsuarioDAO.excluir(objUsuario);
+        objConquista.setId_conquista(Integer.valueOf(id_conquista));
+        objConquistaDAO.excluir(objConquista);
         encaminharParaPagina(request, response);
     }
 
     private void cancelar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("id_usuario", "0");
+        request.setAttribute("id_conquista", "0");
         request.setAttribute("nome", "");
-        request.setAttribute("senha", "");
-        request.setAttribute("email", "");
-        request.setAttribute("endereco", "");
-        request.setAttribute("cpf", "");
-        request.setAttribute("data_cadastro", "");
-        request.setAttribute("dataNascimento", "");
+        request.setAttribute("descricao", "");
+        request.setAttribute("recompensa", "");
         request.setAttribute("opcao", "cadastrar");
         encaminharParaPagina(request, response);
     }
 
     private void encaminharParaPagina(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Usuario> usuarios = objUsuarioDAO.buscarTodosUsuarios();
-        request.setAttribute("usuarios", usuarios);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/CadastroUsuario.jsp");
+        List<Conquista> conquistas = objConquistaDAO.buscarTodasConquistas();
+        request.setAttribute("conquistas", conquistas);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/CadastroConquista.jsp");
         dispatcher.forward(request, response);
     }
 }

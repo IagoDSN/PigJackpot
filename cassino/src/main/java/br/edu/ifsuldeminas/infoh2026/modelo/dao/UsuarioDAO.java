@@ -15,23 +15,35 @@ import java.util.List;
  */
 public class UsuarioDAO extends GenericoDAO<Usuario> {
 
-    public void salvar(Usuario objUsuario){
-        String sql = "INSERT INTO USUARIO (NOME, SENHA, EMAIL, ENDERECO, CPF, DATA_CADASTRO, DATA_NASCIMENTO) VALUES (?,?,?,?,?,?,?)";
-        save(sql, objUsuario.getNome(), objUsuario.getSenha(), objUsuario.getEmail(),objUsuario.getEndereco(), objUsuario.getCpf(), objUsuario.getData_cadastro(), objUsuario.getDataNascimento());
+    public void salvar(Usuario objUsuario) {
+        String sql = "INSERT INTO USUARIO(NOME, SENHA, EMAIL, ENDERECO, CPF, DATA_CADASTRO, DATA_NASCIMENTO) VALUES(?,?,?,?,?,?,?)";
+        save(sql, objUsuario.getNome(), 
+                  objUsuario.getSenha(), 
+                  objUsuario.getEmail(), 
+                  objUsuario.getEndereco(), 
+                  objUsuario.getCpf(), 
+                  objUsuario.getData_cadastro(), 
+                  objUsuario.getDataNascimento());
     }
 
-    public void alterar(Usuario objUsuario){
-        String sql = "UPDATE USUARIO SET NOME=?, SENHA=?, EMAIL=?, ENDERECO=?, CPF=?, DATA_CADASTRO=?, DATA_NASCIMENTO=? WHERE ID_USUARIO=?";
-        save(sql, objUsuario.getNome(), objUsuario.getSenha(), objUsuario.getEmail(), objUsuario.getEndereco(), objUsuario.getCpf(), objUsuario.getData_cadastro(), objUsuario.getDataNascimento(), objUsuario.getId_usuario()
-        );
+    public void alterar(Usuario objUsuario) {
+        String sql = "UPDATE USUARIO SET NOME = ?, SENHA = ?, EMAIL = ?, ENDERECO = ?, CPF = ?, DATA_CADASTRO = ?, DATA_NASCIMENTO = ? WHERE ID_USUARIO = ?";
+        save(sql, objUsuario.getNome(), 
+                  objUsuario.getSenha(), 
+                  objUsuario.getEmail(), 
+                  objUsuario.getEndereco(), 
+                  objUsuario.getCpf(), 
+                  objUsuario.getData_cadastro(), 
+                  objUsuario.getDataNascimento(), 
+                  objUsuario.getId_usuario());
     }
 
-    public void excluir(Usuario objUsuario){
-        String sql = "DELETE FROM USUARIO WHERE ID_USUARIO=?";
+    public void excluir(Usuario objUsuario) {
+        String sql = "DELETE FROM USUARIO WHERE ID_USUARIO = ?";
         save(sql, objUsuario.getId_usuario());
     }
 
-    private static class UsuarioRowMapper implements RowMapper<Usuario>{
+    private static class UsuarioRowMapper implements RowMapper<Usuario> {
 
         @Override
         public Usuario mapRow(ResultSet rs) throws SQLException {
@@ -44,19 +56,19 @@ public class UsuarioDAO extends GenericoDAO<Usuario> {
             objUsuario.setCpf(rs.getString("CPF"));
             objUsuario.setData_cadastro(rs.getDate("DATA_CADASTRO"));
             objUsuario.setDataNascimento(rs.getDate("DATA_NASCIMENTO"));
-
+            
             System.out.println("Mapeando o objeto usuario: " + objUsuario.toString());
             return objUsuario;
         }
     }
 
-    public List<Usuario> buscarTodosUsuarios(){
+    public List<Usuario> buscarTodosUsuarios() {
         String sql = "SELECT * FROM USUARIO";
         return buscarTodos(sql, new UsuarioRowMapper());
     }
 
-    public Usuario buscarUsuarioPorId(int id){
-        String sql = "SELECT * FROM USUARIO WHERE ID_USUARIO=?";
+    public Usuario buscarUsuarioPorId(int id) {
+        String sql = "SELECT * FROM USUARIO WHERE ID_USUARIO = ?";
         return buscarPorId(sql, new UsuarioRowMapper(), id);
     }
 }

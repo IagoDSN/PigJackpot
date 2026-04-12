@@ -1,119 +1,109 @@
-<%-- 
-    Document   : CadastroUsuario
-    Created on : 6 de abr de 2026, 14:54:35
-    Author     : 13410289682
+<%--
+Document : CadastroCidade
+Created on : 2 de mar de 2026, 14:17:10
+Author : 02338079698
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="Latin1"%>
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Cadastro de Usu√°rio</title>
-</head>
-<body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=Latin1">
+        <title>Cadastro de Usu·rios</title>
+        <style>
+            label { display: inline-block; width: 120px; }
+            form { margin-bottom: 20px; }
+            table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+            th, td { padding: 8px; text-align: left; }
+        </style>
+    </head>
+    <body>
+        <%@include file="Menu.jsp" %>
+        <h1>Cadastro de Usu·rios</h1>
+        
+        <form name="cadastro" method="get" 
+              action="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador">
+            
+            <input type="hidden" id="opcao" name="opcao" value="${opcao}">
+            <input type="hidden" name="id_usuario" value="${id_usuario}">
 
-<%@include file="Menu.jsp" %>
+            <p><label>Nome:</label> <input type="text" name="nome" required value="${nome}" size="40"></p>
+            <p><label>Senha:</label> <input type="password" name="senha" required value="${senha}" size="20"></p>
+            <p><label>Email:</label> <input type="email" name="email" required value="${email}" size="40"></p>
+            <p><label>EndereÁo:</label> <input type="text" name="endereco" required value="${endereco}" size="50"></p>
+            <p><label>CPF:</label> <input type="text" name="cpf" required value="${cpf}" size="15"></p>
+            <p><label>Nascimento:</label> <input type="date" name="dataNascimento" required value="${dataNascimento}"></p>
+            <p><label>Data Cadastro:</label> <input type="date" name="data_cadastro" required value="${data_cadastro}"></p>
 
-<h1>Cadastro de Usu√°rio</h1>
+            <input type="submit" value="Salvar" name="Salvar" style="float:left; margin-right: 3px">
+        </form>
+            
+        <form id="cadastroForm" name="cancelar" method="get" action="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador">
+            <input type="hidden" name="opcao" value="cancelar">
+            <input type="submit" value="Cancelar" name="btnCancelar">
+        </form>    
+            
+        <hr>
+        <h3>${mensagem}</h3>
+        <table border="1">
+            <c:if test="${not empty usuarios}">
+                <tr bgcolor="#eeeeee">
+                    <th>ID</th>
+                    <th>NOME</th>
+                    <th>SENHA</th>
+                    <th>EMAIL</th>
+                    <th>CPF</th>
+                    <th>ENDERE«O</th>
+                    <th>NASCIMENTO</th>
+                    <th>CADASTRO</th>
+                    <th>ALTERAR</th>
+                    <th>EXCLUIR</th>
+                </tr>
+            </c:if>
 
-<form method="get" action="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador">
-    
-    <!-- Sempre garantir uma opcao padr√£o -->
-    <input type="hidden" name="opcao" value="${empty opcao ? 'cadastrar' : opcao}">
-    <input type="hidden" name="id_usuario" value="${id_usuario}">
-
-    <p>
-        <label>Nome:</label>
-        <input type="text" name="nome" value="${nome}" required size="40">
-    </p>
-
-    <p>
-        <label>Senha:</label>
-        <input type="password" name="senha" size="20">
-    </p>
-
-    <p>
-        <label>Email:</label>
-        <input type="email" name="email" value="${email}" required size="40">
-    </p>
-
-    <p>
-        <label>Endere√ßo:</label>
-        <input type="text" name="endereco" value="${endereco}" size="50">
-    </p>
-
-    <p>
-        <label>CPF:</label>
-        <input type="text" name="cpf" value="${cpf}" size="20">
-    </p>
-
-    <p>
-        <label>Data Cadastro:</label>
-        <input type="date" name="data_cadastro" value="${data_cadastro}">
-    </p>
-
-    <p>
-        <label>Data Nascimento:</label>
-        <input type="date" name="dataNascimento" value="${dataNascimento}">
-    </p>
-
-    <input type="submit" value="Salvar">
-</form>
-
-<form method="get" action="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador">
-    <input type="hidden" name="opcao" value="cancelar">
-    <input type="submit" value="Cancelar">
-</form>
-
-<h3>${mensagem}</h3>
-
-<table border="1">
-
-    <c:if test="${not empty usuarios}">
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>CPF</th>
-            <th>Alterar</th>
-            <th>Excluir</th>
-        </tr>
-    </c:if>
-
-    <c:forEach var="usuario" items="${usuarios}">
-        <tr>
-            <td>${usuario.id_usuario}</td>
-            <td>${usuario.nome}</td>
-            <td>${usuario.email}</td>
-            <td>${usuario.cpf}</td>
-
-            <td>
-                <form method="get" action="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador">
-                    <input type="hidden" name="id_usuario" value="${usuario.id_usuario}">
-                    <input type="hidden" name="nome" value="${usuario.nome}">
-                    <input type="hidden" name="email" value="${usuario.email}">
-                    <input type="hidden" name="endereco" value="${usuario.endereco}">
-                    <input type="hidden" name="cpf" value="${usuario.cpf}">
-                    <input type="hidden" name="data_cadastro" value="${usuario.data_cadastro}">
-                    <input type="hidden" name="dataNascimento" value="${usuario.dataNascimento}">
-                    <input type="hidden" name="opcao" value="enviarAlterar">
-                    <button type="submit">Alterar</button>
-                </form>
-            </td>
-
-            <td>
-                <form method="get" action="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador">
-                    <input type="hidden" name="id_usuario" value="${usuario.id_usuario}">
-                    <input type="hidden" name="opcao" value="enviarExcluir">
-                    <button type="submit">Excluir</button>
-                </form>
-            </td>
-        </tr>
-    </c:forEach>
-
-</table>
-
-</body>
+            <c:forEach var="u" items="${usuarios}">
+                <tr>
+                    <td>${u.id_usuario}</td>
+                    <td>${u.nome}</td>
+                    <td>${u.senha}</td>
+                    <td>${u.email}</td>
+                    <td>${u.cpf}</td>
+                    <td>${u.endereco}</td>
+                    <td>${u.dataNascimento}</td>
+                    <td>${u.data_cadastro}</td>
+                    
+                    <td>
+                        <form method="get" action="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador">
+                            <input type="hidden" name="id_usuario" value="${u.id_usuario}">
+                            <input type="hidden" name="nome" value="${u.nome}">
+                            <input type="hidden" name="senha" value="${u.senha}">
+                            <input type="hidden" name="email" value="${u.email}">
+                            <input type="hidden" name="endereco" value="${u.endereco}">
+                            <input type="hidden" name="cpf" value="${u.cpf}">
+                            <input type="hidden" name="dataNascimento" value="${u.dataNascimento}">
+                            <input type="hidden" name="data_cadastro" value="${u.data_cadastro}">
+                            <input type="hidden" name="opcao" value="enviarAlterar">
+                            <button type="submit">Alterar</button>
+                        </form>
+                    </td>
+                    
+                    <td>
+                        <form method="get" action="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador">
+                            <input type="hidden" name="id_usuario" value="${u.id_usuario}">
+                            <input type="hidden" name="nome" value="${u.nome}">
+                            <input type="hidden" name="senha" value="${u.senha}">
+                            <input type="hidden" name="email" value="${u.email}">
+                            <input type="hidden" name="endereco" value="${u.endereco}">
+                            <input type="hidden" name="cpf" value="${u.cpf}">
+                            <input type="hidden" name="dataNascimento" value="${u.dataNascimento}">
+                            <input type="hidden" name="data_cadastro" value="${u.data_cadastro}">
+                            <input type="hidden" name="opcao" value="enviarExcluir">
+                            <button type="submit">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </body>
 </html>
