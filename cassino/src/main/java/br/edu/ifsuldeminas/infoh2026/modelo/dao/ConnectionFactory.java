@@ -15,10 +15,10 @@ import java.sql.SQLException;
  */
 public class ConnectionFactory {
 
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/cassinoonline?useSSL=false";
+    private static final String DB_URL = "jdbc:mysql://localhost:3307/cassinoonline?useSSL=false";
     private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "ogai2009";
+    private static final String DB_PASSWORD = "1234";
 
     //variável estática que mantém a instância única da ConnectionFactory
     private static ConnectionFactory instance;
