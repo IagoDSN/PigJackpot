@@ -8,27 +8,9 @@
 
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilo.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
 
-<nav class="menu">
-    <img class="logo" src="assets/logo.png">
-    <ul>
-        <li><a class="contex" href="${pageContext.request.contextPath}/index.jsp">HOME</a></li>
-        <li><a class="contex" href="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador?opcao=cancelar">USUÁRIO</a></li>
-        <li><a class="contex" href="${pageContext.request.contextPath}${URL_BASE}/ConquistaControlador?opcao=cancelar">CONQUISTA</a></li>
-        <li><a class="contex" href="${pageContext.request.contextPath}${URL_BASE}/JogoControlador?opcao=cancelar">JOGO</a></li>
-        <li><a class="contex" href="${pageContext.request.contextPath}/login.jsp">LOGIN</a></li>
-        <li><a class="contex" href="${pageContext.request.contextPath}/logout.jsp">LOGOUT</a></li>
-
-    </ul>
-    <div>
-        <a href="https://instagram.com/seuUsuario" target="_blank">
-            <img class="redes" src="assets/instagram.png">
-        </a>
-        <a href="https://github.com/IagoDSN/PigJackpot" target="_blank">
-            <img class="redes" src="assets/github.png">   
-        </a>
-        </div>
-</nav>
+<%@include file="Menu.jsp" %>
 
 <div class="banner-cassino">
     <div class="overlay">
@@ -36,3 +18,67 @@
         <p>encontre o poder 💰</p>
     </div>
 </div>
+
+<section class="jogos-recentes">
+
+    <h1 class="titulo-jogos">Jogos Novos</h1>
+
+    <div class="linha-jogos">
+
+        <div class="card-jogo">
+
+            <img src="${pageContext.request.contextPath}/assets/jogoNovo.jfif">
+
+            <div class="conteudo-jogo">
+                <h2>${recentes[0].nome}</h2>
+
+                <p>${recentes[0].descricao}</p>
+
+                <a href="#">Jogar</a>
+            </div>
+
+        </div>
+
+        <div class="card-jogo">
+
+            <img src="${pageContext.request.contextPath}/assets/jogoNovo.jfif">
+
+            <div class="conteudo-jogo">
+                <h2>${recentes[1].nome}</h2>
+
+                <p>${recentes[1].descricao}</p>
+
+                <a href="#">Jogar</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer-cassino">
+    <div class="footer-conteudo">
+        <div>
+            <h2>Pig Jackpot</h2>
+        </div>
+        <div>
+            <ul>
+                <li><a href="#">Home</a></li>
+            </ul>
+        </div>
+        <div>
+            <div class="footer-redes">
+                <a href="https://instagram.com/seuUsuario" target="_blank">
+                    <img class="redes" src="${pageContext.request.contextPath}/assets/instagram.png">
+                </a>
+                <a href="https://github.com/IagoDSN/PigJackpot" target="_blank">
+                    <img class="redes" src="${pageContext.request.contextPath}/assets/github.png">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copy">
+        © 2026 Pig Jackpot - Todos os direitos reservados.
+    </div>
+</footer>

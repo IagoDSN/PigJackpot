@@ -58,4 +58,9 @@ public class JogoDAO extends GenericoDAO<Jogo> {
         String sql = "SELECT * FROM JOGO WHERE ID_JOGO = ?";
         return buscarPorId(sql, new JogoRowMapper(), id);
     }
+    
+    public List<Jogo> buscarJogosRecentes() {
+    String sql =  "SELECT * FROM JOGO ORDER BY ID_JOGO DESC LIMIT 2";
+    return buscarTodos(sql, new JogoRowMapper());
+    }
 }

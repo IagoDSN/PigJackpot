@@ -11,6 +11,7 @@ Author : 02338079698
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=Latin1">
         <title>Cadastro de Usuários</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilo.css">
         <style>
             label { display: inline-block; width: 120px; }
             form { margin-bottom: 20px; }

@@ -88,10 +88,71 @@ nav.menu ul {
 .logo{
     width: auto;
     height: 100%;
+    transition: 0.6s;
+    cursor: pointer; 
 }
 .redes{
    border-radius: 360px;
-   width: auto;
-   height: 80%;
-   margin-right: 15px
+   width: 55px;
+   height: 55px;
+   margin-right: 15px;
+   transition: 0.6s;
+}
+.logo:hover,
+.redes:hover{
+    transform: scale(1.06);
+}
+
+.footer-cassino{
+    margin-top: 80px;
+    background: linear-gradient(90deg, #141414, #1f1f1f);
+    border-top: 2px solid #FFD700;
+    color: white;
+    padding: 40px 60px 20px;
+}
+
+.footer-conteudo{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer-cassino h2,
+.footer-cassino h3{
+    color: #FFD700;
+}
+
+.footer-cassino ul{
+    list-style: none;
+    padding: 0;
+}
+
+.footer-cassino li{
+    margin-bottom: 10px;
+}
+
+.footer-cassino a{
+    text-decoration: none;
+    color: #ddd;
+    transition: 0.3s;
+    font-size: 22px;
+}
+
+.footer-cassino a:hover{
+    color: #FFD700;
+}
+
+.footer-copy{
+    text-align: center;
+    margin-top: 30px;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    color: #aaa;
+}
+
+.footer-redes{
+    display: flex;
+    gap: 15px;
 }

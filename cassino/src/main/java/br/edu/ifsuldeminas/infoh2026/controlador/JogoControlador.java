@@ -72,7 +72,7 @@ public class JogoControlador extends HttpServlet {
         } catch (IllegalArgumentException ex) {
             response.getWriter().println("Erro: " + ex.getMessage());
         }
-    }
+    }  
 
     private void cadastrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         objJogo.setNome(nome);
