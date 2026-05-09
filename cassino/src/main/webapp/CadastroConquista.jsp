@@ -12,20 +12,32 @@
         <meta http-equiv="Content-Type" content="text/html; charset=Latin1">
         <title>Cadastro de Conquistas</title>
         <style>
-            label { display: inline-block; width: 120px; }
-            form { margin-bottom: 20px; }
-            table { width: 100%; margin-top: 20px; border-collapse: collapse; }
-            th, td { padding: 8px; text-align: left; }
+            label {
+                display: inline-block;
+                width: 120px;
+            }
+            form {
+                margin-bottom: 20px;
+            }
+            table {
+                width: 100%;
+                margin-top: 20px;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 8px;
+                text-align: left;
+            }
         </style>
     </head>
     <body>
         <%@include file="Menu.jsp" %>
         <h1>Cadastro de Conquistas</h1>
-        
+
         <%-- FORMULÁRIO PRINCIPAL --%>
         <form name="cadastro" method="get" 
               action="${pageContext.request.contextPath}${URL_BASE}/ConquistaControlador">
-            
+
             <input type="hidden" id="opcao" name="opcao" value="${opcao}">
             <input type="hidden" name="id_conquista" value="${id_conquista}">
 
@@ -35,16 +47,16 @@
 
             <input type="submit" value="Salvar" name="Salvar" style="float:left; margin-right: 3px">
         </form>
-            
+
         <%-- BOTÃO CANCELAR --%>
         <form id="cadastroForm" name="cancelar" method="get" action="${pageContext.request.contextPath}${URL_BASE}/ConquistaControlador">
             <input type="hidden" name="opcao" value="cancelar">
             <input type="submit" value="Cancelar" name="btnCancelar">
         </form>    
-            
+
         <hr>
         <h3>${mensagem}</h3>
-        
+
         <%-- TABELA DE LISTAGEM --%>
         <table border="1">
             <c:if test="${not empty conquistas}">
@@ -64,7 +76,7 @@
                     <td>${c.nome}</td>
                     <td>${c.descricao}</td>
                     <td>${c.recompensa}</td>
-                    
+
                     <%-- COLUNA ALTERAR --%>
                     <td>
                         <form method="get" action="${pageContext.request.contextPath}${URL_BASE}/ConquistaControlador">
@@ -76,7 +88,7 @@
                             <button type="submit">Alterar</button>
                         </form>
                     </td>
-                    
+
                     <%-- COLUNA EXCLUIR --%>
                     <td>
                         <form method="get" action="${pageContext.request.contextPath}${URL_BASE}/ConquistaControlador">
@@ -91,5 +103,30 @@
                 </tr>
             </c:forEach>
         </table>
+        <footer class="footer-cassino">
+            <div class="footer-conteudo">
+                <div>
+                    <h2>Pig Jackpot</h2>
+                </div>
+                <div>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-redes">
+                        <a href="https://instagram.com/seuUsuario" target="_blank">
+                            <img class="redes" src="${pageContext.request.contextPath}/assets/instagram.png">
+                        </a>
+                        <a href="https://github.com/IagoDSN/PigJackpot" target="_blank">
+                            <img class="redes" src="${pageContext.request.contextPath}/assets/github.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copy">
+                © 2026 Pig Jackpot - Todos os direitos reservados.
+            </div>
+        </footer>
     </body>
 </html>

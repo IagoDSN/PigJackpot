@@ -13,19 +13,31 @@ Author : 02338079698
         <title>Cadastro de Usuários</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilo.css">
         <style>
-            label { display: inline-block; width: 120px; }
-            form { margin-bottom: 20px; }
-            table { width: 100%; margin-top: 20px; border-collapse: collapse; }
-            th, td { padding: 8px; text-align: left; }
+            label {
+                display: inline-block;
+                width: 120px;
+            }
+            form {
+                margin-bottom: 20px;
+            }
+            table {
+                width: 100%;
+                margin-top: 20px;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 8px;
+                text-align: left;
+            }
         </style>
     </head>
     <body>
         <%@include file="Menu.jsp" %>
         <h1>Cadastro de Usuários</h1>
-        
+
         <form name="cadastro" method="get" 
               action="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador">
-            
+
             <input type="hidden" id="opcao" name="opcao" value="${opcao}">
             <input type="hidden" name="id_usuario" value="${id_usuario}">
 
@@ -39,12 +51,12 @@ Author : 02338079698
 
             <input type="submit" value="Salvar" name="Salvar" style="float:left; margin-right: 3px">
         </form>
-            
+
         <form id="cadastroForm" name="cancelar" method="get" action="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador">
             <input type="hidden" name="opcao" value="cancelar">
             <input type="submit" value="Cancelar" name="btnCancelar">
         </form>    
-            
+
         <hr>
         <h3>${mensagem}</h3>
         <table border="1">
@@ -73,7 +85,7 @@ Author : 02338079698
                     <td>${u.endereco}</td>
                     <td>${u.dataNascimento}</td>
                     <td>${u.data_cadastro}</td>
-                    
+
                     <td>
                         <form method="get" action="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador">
                             <input type="hidden" name="id_usuario" value="${u.id_usuario}">
@@ -88,7 +100,7 @@ Author : 02338079698
                             <button type="submit">Alterar</button>
                         </form>
                     </td>
-                    
+
                     <td>
                         <form method="get" action="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador">
                             <input type="hidden" name="id_usuario" value="${u.id_usuario}">
@@ -106,5 +118,31 @@ Author : 02338079698
                 </tr>
             </c:forEach>
         </table>
+
+        <footer class="footer-cassino">
+            <div class="footer-conteudo">
+                <div>
+                    <h2>Pig Jackpot</h2>
+                </div>
+                <div>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-redes">
+                        <a href="https://instagram.com/seuUsuario" target="_blank">
+                            <img class="redes" src="${pageContext.request.contextPath}/assets/instagram.png">
+                        </a>
+                        <a href="https://github.com/IagoDSN/PigJackpot" target="_blank">
+                            <img class="redes" src="${pageContext.request.contextPath}/assets/github.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copy">
+                © 2026 Pig Jackpot - Todos os direitos reservados.
+            </div>
+        </footer>
     </body>
 </html>
