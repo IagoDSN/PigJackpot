@@ -34,7 +34,7 @@
 
                 <p>${recentes[0].descricao}</p>
 
-                <a href="#">Jogar</a>
+                <a href="${pageContext.request.contextPath}${URL_BASE}/JogoControlador?opcao=cancelar">Jogar</a>
             </div>
 
         </div>
@@ -48,7 +48,7 @@
 
                 <p>${recentes[1].descricao}</p>
 
-                <a href="#">Jogar</a>
+                <a href="${pageContext.request.contextPath}${URL_BASE}/JogoControlador?opcao=cancelar">Jogar</a>
             </div>
 
         </div>
