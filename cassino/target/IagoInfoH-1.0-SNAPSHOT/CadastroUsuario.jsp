@@ -12,24 +12,7 @@ Author : 02338079698
         <meta http-equiv="Content-Type" content="text/html; charset=Latin1">
         <title>Cadastro de Usuários</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilo.css">
-        <style>
-            label {
-                display: inline-block;
-                width: 120px;
-            }
-            form {
-                margin-bottom: 20px;
-            }
-            table {
-                width: 100%;
-                margin-top: 20px;
-                border-collapse: collapse;
-            }
-            th, td {
-                padding: 8px;
-                text-align: left;
-            }
-        </style>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/forms.css">
     </head>
     <body>
         <%@include file="Menu.jsp" %>
@@ -49,13 +32,18 @@ Author : 02338079698
             <p><label>Nascimento:</label> <input type="date" name="dataNascimento" required value="${dataNascimento}"></p>
             <p><label>Data Cadastro:</label> <input type="date" name="data_cadastro" required value="${data_cadastro}"></p>
 
-            <input type="submit" value="Salvar" name="Salvar" style="float:left; margin-right: 3px">
+            <div class="area-botoes">
+
+                <input type="submit" value="Salvar" name="Salvar">
+
+                <a class="btn-link"
+                   href="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador?opcao=cancelar">
+                    Cancelar
+                </a>
+
+            </div>
         </form>
 
-        <form id="cadastroForm" name="cancelar" method="get" action="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador">
-            <input type="hidden" name="opcao" value="cancelar">
-            <input type="submit" value="Cancelar" name="btnCancelar">
-        </form>    
 
         <hr>
         <h3>${mensagem}</h3>

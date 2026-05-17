@@ -7,7 +7,7 @@
     <packaging>war</packaging>
     <name>Cassino_Online</name>
     
-     <properties>
+    <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jakartaee>10.0.0</jakartaee>
     </properties>
@@ -25,6 +25,14 @@
             <artifactId>mysql-connector-j </artifactId>
             <version>9.2.0</version>
         </dependency>
+        
+       <!--  Depencdecia da env: -->
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>java-dotenv</artifactId>
+            <version>5.2.2</version>
+        </dependency>
+        
     </dependencies>
     
     <build>

@@ -12,6 +12,22 @@ import java.sql.SQLException;
 /**
  *
  * @author 02338079698
+ * package br.edu.ifsuldeminas.infoh2026.database;
+
+import io.github.cdimascio.dotenv.Dotenv;
+
+    private static final Dotenv dotenv = Dotenv.load();
+
+    private static final String DB_URL =
+            dotenv.get("DB_URL");
+    private static final String DB_DRIVER =
+            dotenv.get("DB_DRIVER");
+    private static final String DB_USER =
+            dotenv.get("DB_USER");
+    private static final String DB_PASSWORD =
+            dotenv.get("DB_PASSWORD");
+    private static ConnectionFactory instance;
+}
  */
 public class ConnectionFactory {
 

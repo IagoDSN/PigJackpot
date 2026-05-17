@@ -1,0 +1,218 @@
+/* TÍTULO */
+h1{
+    text-align: center;
+    color: #FFD700;
+    margin-top: 40px;
+    margin-bottom: 35px;
+    font-size: 42px;
+}
+
+/* FORMULÁRIO PRINCIPAL */
+form{
+    width: 500px;
+
+    margin: 30px auto;
+
+    padding: 30px;
+
+    background: #181818;
+
+    border: 1px solid #D19027;
+
+    border-radius: 20px;
+
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* CAMPOS */
+form p{
+    margin-bottom: 20px;
+}
+
+/* LABELS */
+label{
+    display: block;
+
+    color: #FFD700;
+
+    margin-bottom: 8px;
+
+    font-weight: bold;
+
+    font-size: 15px;
+}
+
+/* INPUTS */
+input:not([type="submit"]):not([type="hidden"]){
+    width: 100%;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    border: 1px solid #444;
+
+    background: #101010;
+
+    color: white;
+
+    font-size: 15px;
+
+    box-sizing: border-box;
+
+    transition: 0.3s;
+}
+
+/* FOCUS */
+input:not([type="submit"]):not([type="hidden"]):focus{
+    outline: none;
+
+    border-color: #FFD700;
+
+    box-shadow: 0 0 10px #FFD70055;
+}
+
+/* INPUT DATA */
+input[type="date"]{
+    color-scheme: dark;
+}
+
+/* BOTÕES */
+input[type="submit"],
+button{
+    padding: 12px 22px;
+
+    background: #FFD700;
+
+    color: black;
+
+    border: none;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+/* HOVER BOTÕES */
+input[type="submit"]:hover,
+button:hover{
+    background: white;
+
+    transform: translateY(-2px);
+}
+
+/* ÁREA DOS BOTÕES */
+.area-botoes{
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+/* LINK ESTILO BOTÃO */
+.btn-link{
+    padding: 12px 22px;
+
+    background: #FFD700;
+
+    color: black;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.btn-link:hover{
+    background: white;
+
+    transform: translateY(-2px);
+}
+
+/* MENSAGEM */
+h3{
+    text-align: center;
+
+    color: white;
+
+    margin-top: 35px;
+}
+
+/* HR */
+hr{
+    width: 90%;
+
+    margin-top: 50px;
+
+    border: 1px solid #333;
+}
+
+/* TABELA */
+table{
+    width: 90%;
+
+    margin: 40px auto;
+
+    border-collapse: collapse;
+
+    overflow: hidden;
+
+    border-radius: 15px;
+
+    background: #181818;
+
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* CABEÇALHO */
+th{
+    background: #FFD700;
+
+    color: black;
+
+    padding: 14px;
+
+    font-size: 15px;
+}
+
+/* CÉLULAS */
+td{
+    padding: 10px 14px;
+
+    color: white;
+
+    background: #202020;
+
+    border-bottom: 1px solid #333;
+
+    vertical-align: middle;
+
+    text-align: center;
+}
+
+/* HOVER LINHAS */
+tr:hover td{
+    background: #2a2a2a;
+}
+
+/* FORMULÁRIOS DA TABELA */
+td form{
+    all: unset;
+
+    display: inline-block;
+}
+
+/* BOTÕES DA TABELA */
+td button{
+    padding: 8px 14px;
+
+    font-size: 14px;
+}

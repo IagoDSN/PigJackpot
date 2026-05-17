@@ -2,6 +2,7 @@
 *.class
 
 # Log file
+*.env
 *.log
 
 # BlueJ files

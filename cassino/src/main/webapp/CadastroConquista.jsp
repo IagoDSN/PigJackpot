@@ -11,24 +11,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=Latin1">
         <title>Cadastro de Conquistas</title>
-        <style>
-            label {
-                display: inline-block;
-                width: 120px;
-            }
-            form {
-                margin-bottom: 20px;
-            }
-            table {
-                width: 100%;
-                margin-top: 20px;
-                border-collapse: collapse;
-            }
-            th, td {
-                padding: 8px;
-                text-align: left;
-            }
-        </style>
+       <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilo.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/forms.css">
     </head>
     <body>
         <%@include file="Menu.jsp" %>
@@ -45,14 +29,17 @@
             <p><label>Descrição:</label> <input type="text" name="descricao" required value="${descricao}" size="60"></p>
             <p><label>Recompensa:</label> <input type="number" step="0.01" name="recompensa" required value="${recompensa}" size="10"></p>
 
-            <input type="submit" value="Salvar" name="Salvar" style="float:left; margin-right: 3px">
-        </form>
+           <div class="area-botoes">
 
-        <%-- BOTÃO CANCELAR --%>
-        <form id="cadastroForm" name="cancelar" method="get" action="${pageContext.request.contextPath}${URL_BASE}/ConquistaControlador">
-            <input type="hidden" name="opcao" value="cancelar">
-            <input type="submit" value="Cancelar" name="btnCancelar">
-        </form>    
+                <input type="submit" value="Salvar" name="Salvar">
+
+                <a class="btn-link"
+                   href="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador?opcao=cancelar">
+                    Cancelar
+                </a>
+
+            </div>
+        </form>  
 
         <hr>
         <h3>${mensagem}</h3>
