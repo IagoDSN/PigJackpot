@@ -10,13 +10,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=Latin1">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilo.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/forms.css">
         <title>Cadastro de Saque</title>
     </head>
 
     <%@include file="Menu.jsp" %>
 
     <body>
-        <h1>Cadastro de Saque</h1>
+
+        <h1>Cadastro Saque</h1>
 
         <form name="cadastro" method="get"
               action="${pageContext.request.contextPath}${URL_BASE}/SaqueControlador">
@@ -38,22 +41,49 @@
                        name="valorTotalSaque"
                        required=""
                        value="${valorTotalSaque}"
-                       size="10" />
+                       size="10"/>
             </p>
 
-            <input type="submit"
-                   value="Salvar"
-                   name="Salvar"
-                   style="float:left; margin-right: 3px">
-        </form>
+            <p>
+                <label>Usuário:</label>
 
-        <form id="cadastroForm"
-              name="cadastro"
-              method="get"
-              action="${pageContext.request.contextPath}${URL_BASE}/SaqueControlador">
+                <select name="usuarioSaque">
 
-            <input type="submit" value="Cancelar" name="btnCancelar">
-            <input type="hidden" name="opcao" value="cancelar">
+                    <c:forEach var="usuarios" items="${listaUsuario}">
+
+                        <c:choose>
+
+                            <c:when test="${usuarios.id_usuario eq usuarioSaque}">
+                                <option selected=""
+                                        value="${usuarios.id_usuario}">
+                                    ${usuarios.nome}
+                                </option>
+                            </c:when>
+
+                            <c:otherwise>
+                                <option value="${usuarios.id_usuario}">
+                                    ${usuarios.nome}
+                                </option>
+                            </c:otherwise>
+
+                        </c:choose>
+
+                    </c:forEach>
+
+                </select>
+
+            </p>
+
+            <div class="area-botoes">
+
+                <input type="submit" value="Salvar" name="Salvar">
+
+                <a class="btn-link"
+                   href="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador?opcao=cancelar">
+                    Cancelar
+                </a>
+
+            </div>
 
         </form>
 
@@ -66,63 +96,94 @@
                     <th>ID</th>
                     <th>DATA</th>
                     <th>VALOR TOTAL</th>
+                    <th>USUÁRIO</th>
                     <th>ALTERAR</th>
                     <th>EXCLUIR</th>
                 </tr>
             </c:if>
 
             <c:forEach var="saques" items="${listaSaque}">
+
                 <tr>
 
                     <td>${saques.id_saque}</td>
                     <td>${saques.data}</td>
                     <td>${saques.valor_total}</td>
+                    <td>${saques.usuario.nome}</td>
 
                     <td>
-                        <form method="get"
+
+                        <form name="cadastro"
+                              method="get"
                               action="${pageContext.request.contextPath}${URL_BASE}/SaqueControlador">
 
-                            <input type="hidden" name="idSaque"
+                            <input type="hidden"
+                                   name="idSaque"
                                    value="${saques.id_saque}">
 
-                            <input type="hidden" name="dataSaque"
+                            <input type="hidden"
+                                   name="dataSaque"
                                    value="${saques.data}">
 
-                            <input type="hidden" name="valorTotalSaque"
+                            <input type="hidden"
+                                   name="valorTotalSaque"
                                    value="${saques.valor_total}">
 
-                            <input type="hidden" name="opcao"
+                            <input type="hidden"
+                                   name="usuarioSaque"
+                                   value="${saques.usuario.id_usuario}">
+
+                            <input type="hidden"
+                                   name="opcao"
                                    value="enviarAlterar">
 
-                            <button type="submit">Alterar</button>
+                            <button type="submit">
+                                Alterar
+                            </button>
 
                         </form>
+
                     </td>
 
                     <td>
-                        <form method="get"
+
+                        <form name="cadastro"
+                              method="get"
                               action="${pageContext.request.contextPath}${URL_BASE}/SaqueControlador">
 
-                            <input type="hidden" name="idSaque"
+                            <input type="hidden"
+                                   name="idSaque"
                                    value="${saques.id_saque}">
 
-                            <input type="hidden" name="dataSaque"
+                            <input type="hidden"
+                                   name="dataSaque"
                                    value="${saques.data}">
 
-                            <input type="hidden" name="valorTotalSaque"
+                            <input type="hidden"
+                                   name="valorTotalSaque"
                                    value="${saques.valor_total}">
 
-                            <input type="hidden" name="opcao"
+                            <input type="hidden"
+                                   name="usuarioSaque"
+                                   value="${saques.usuario.id_usuario}">
+
+                            <input type="hidden"
+                                   name="opcao"
                                    value="enviarExcluir">
 
-                            <button type="submit">Excluir</button>
+                            <button type="submit">
+                                Excluir
+                            </button>
 
                         </form>
+
                     </td>
 
                 </tr>
+
             </c:forEach>
 
         </table>
+
     </body>
 </html>

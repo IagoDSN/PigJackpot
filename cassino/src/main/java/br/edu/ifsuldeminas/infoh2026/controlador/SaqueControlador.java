@@ -5,7 +5,9 @@
 package br.edu.ifsuldeminas.infoh2026.controlador;
 
 import br.edu.ifsuldeminas.infoh2026.modelo.dao.SaqueDAO;
+import br.edu.ifsuldeminas.infoh2026.modelo.dao.UsuarioDAO;
 import br.edu.ifsuldeminas.infoh2026.modelo.entidade.Saque;
+import br.edu.ifsuldeminas.infoh2026.modelo.entidade.Usuario;
 import br.edu.ifsuldeminas.infoh2026.servico.WebConstante;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -26,16 +28,22 @@ import java.util.List;
 public class SaqueControlador extends HttpServlet {
 
     Saque objSaque;
+    UsuarioDAO objUsuarioDao;
     SaqueDAO objSaqueDao;
+
     String idSaque = "";
     String dataSaque = "";
     String valorTotalSaque = "";
+    String usuarioSaque = "";
     String opcao = "";
 
     @Override
     public void init() throws ServletException {
+
+        objUsuarioDao = new UsuarioDAO();
         objSaque = new Saque();
         objSaqueDao = new SaqueDAO();
+
     }
 
     @Override
@@ -43,6 +51,7 @@ public class SaqueControlador extends HttpServlet {
             throws ServletException, IOException {
 
         try {
+
             opcao = request.getParameter("opcao");
 
             if (opcao == null || opcao.isEmpty()) {
@@ -52,8 +61,10 @@ public class SaqueControlador extends HttpServlet {
             idSaque = request.getParameter("idSaque");
             dataSaque = request.getParameter("dataSaque");
             valorTotalSaque = request.getParameter("valorTotalSaque");
+            usuarioSaque = request.getParameter("usuarioSaque");
 
             switch (opcao) {
+
                 case "cadastrar":
                     cadastrar(request, response);
                     break;
@@ -83,13 +94,17 @@ public class SaqueControlador extends HttpServlet {
             }
 
         } catch (NumberFormatException e) {
+
             response.getWriter().println(
                     "Erro: um ou mais parâmetros não são números válidos. "
-                    + e.getMessage()
-            );
+                    + e.getMessage());
+
         } catch (IllegalArgumentException e) {
+
             response.getWriter().println("Erro: " + e.getMessage());
+
         }
+
     }
 
     private void cadastrar(HttpServletRequest request,
@@ -98,12 +113,15 @@ public class SaqueControlador extends HttpServlet {
 
         objSaque.setData(Date.valueOf(dataSaque));
         objSaque.setValor_total(Double.valueOf(valorTotalSaque));
+        objSaque.getUsuario().setId_usuario(Integer.valueOf(usuarioSaque));
 
         objSaqueDao.salvar(objSaque);
 
-        request.setAttribute("mensagem", "Saque cadastrado com sucesso!");
+        request.setAttribute("mensagem",
+                "Saque cadastrado com sucesso!");
 
         encaminharParaPagina(request, response);
+
     }
 
     private void enviarAlterar(HttpServletRequest request,
@@ -113,11 +131,14 @@ public class SaqueControlador extends HttpServlet {
         request.setAttribute("idSaque", idSaque);
         request.setAttribute("dataSaque", dataSaque);
         request.setAttribute("valorTotalSaque", valorTotalSaque);
+        request.setAttribute("usuarioSaque", usuarioSaque);
 
         request.setAttribute("opcao", "confirmarAlterar");
-        request.setAttribute("mensagem", "Edite os dados e clique em Salvar");
+        request.setAttribute("mensagem",
+                "Edite os dados e clique em Salvar");
 
         encaminharParaPagina(request, response);
+
     }
 
     private void enviarExcluir(HttpServletRequest request,
@@ -127,12 +148,14 @@ public class SaqueControlador extends HttpServlet {
         request.setAttribute("idSaque", idSaque);
         request.setAttribute("dataSaque", dataSaque);
         request.setAttribute("valorTotalSaque", valorTotalSaque);
+        request.setAttribute("usuarioSaque", usuarioSaque);
 
         request.setAttribute("opcao", "confirmarExcluir");
         request.setAttribute("mensagem",
                 "Confirme os dados e clique em Salvar para excluir");
 
         encaminharParaPagina(request, response);
+
     }
 
     private void confirmarAlterar(HttpServletRequest request,
@@ -142,10 +165,12 @@ public class SaqueControlador extends HttpServlet {
         objSaque.setId_saque(Integer.valueOf(idSaque));
         objSaque.setData(Date.valueOf(dataSaque));
         objSaque.setValor_total(Double.valueOf(valorTotalSaque));
+        objSaque.getUsuario().setId_usuario(Integer.valueOf(usuarioSaque));
 
         objSaqueDao.alterar(objSaque);
 
         encaminharParaPagina(request, response);
+
     }
 
     private void confirmarExcluir(HttpServletRequest request,
@@ -157,20 +182,24 @@ public class SaqueControlador extends HttpServlet {
         objSaqueDao.excluir(objSaque);
 
         encaminharParaPagina(request, response);
+
     }
 
     private void encaminharParaPagina(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Saque> listaSaque = objSaqueDao.buscarTodosSaques();
+        List<Usuario> listaUsuario = objUsuarioDao.buscarTodosUsuarios();
+        request.setAttribute("listaUsuario", listaUsuario);
 
+        List<Saque> listaSaque = objSaqueDao.buscarTodosSaques();
         request.setAttribute("listaSaque", listaSaque);
 
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher("/CadastroSaque.jsp");
 
         dispatcher.forward(request, response);
+
     }
 
     private void cancelar(HttpServletRequest request,
@@ -181,7 +210,10 @@ public class SaqueControlador extends HttpServlet {
         request.setAttribute("opcao", "cadastrar");
         request.setAttribute("dataSaque", "");
         request.setAttribute("valorTotalSaque", "");
+        request.setAttribute("usuarioSaque", "");
 
         encaminharParaPagina(request, response);
+
     }
+
 }

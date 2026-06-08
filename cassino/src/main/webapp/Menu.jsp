@@ -7,6 +7,7 @@
         <li><a class="contex" href="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador?opcao=cancelar">USUÁRIO</a></li>
         <li><a class="contex" href="${pageContext.request.contextPath}${URL_BASE}/ConquistaControlador?opcao=cancelar">CONQUISTA</a></li>
         <li><a class="contex" href="${pageContext.request.contextPath}${URL_BASE}/JogoControlador?opcao=cancelar">JOGO</a></li>
+        <li><a class="contex" href="${pageContext.request.contextPath}${URL_BASE}/SaqueControlador?opcao=cancelar">SAQUE</a></li>
         <li><a class="contex" href="${pageContext.request.contextPath}/login.jsp">LOGIN</a></li>
         <li><a class="contex" href="${pageContext.request.contextPath}/logout.jsp">LOGOUT</a></li>
 
