@@ -8,37 +8,20 @@ import java.sql.Date;
 
 /**
  *
- * @author 12409864678
+ * @author Iagod
  */
-public class Transacao {
-    private Integer id_transacao;
-    private double valor;
-    private String tipo;
+public class Deposito {
+    private Integer id_deposito;
     private Date data;
+    private Double valor_total;
     private Usuario usuario = new Usuario();
 
-    public Integer getId_transacao() {
-        return id_transacao;
+    public Integer getId_deposito() {
+        return id_deposito;
     }
 
-    public void setId_transacao(Integer id_transacao) {
-        this.id_transacao = id_transacao;
-    }
-
-    public double getValor() {
-        return valor;
-    }
-
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setId_deposito(Integer id_deposito) {
+        this.id_deposito = id_deposito;
     }
 
     public Date getData() {
@@ -49,6 +32,14 @@ public class Transacao {
         this.data = data;
     }
 
+    public Double getValor_total() {
+        return valor_total;
+    }
+
+    public void setValor_total(Double valor_total) {
+        this.valor_total = valor_total;
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -56,7 +47,4 @@ public class Transacao {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
-    
-    
 }

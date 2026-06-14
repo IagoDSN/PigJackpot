@@ -16,36 +16,37 @@ import java.util.List;
 public class TransacaoDAO extends GenericoDAO<Transacao> {
 
     public void salvar(Transacao objTransacao) {
-
-        String sql = "INSERT INTO TRANSACAO(VALOR, TIPO, DATA) VALUES(?,?,?)";
+        String sql = "INSERT INTO TRANSACAO(VALOR, TIPO, DATA, ID_USUARIO) VALUES(?,?,?,?)";
 
         save(sql,
                 objTransacao.getValor(),
                 objTransacao.getTipo(),
-                objTransacao.getData());
+                objTransacao.getData(),
+                objTransacao.getUsuario().getId_usuario());
     }
 
     public void alterar(Transacao objTransacao) {
-
         String sql = "UPDATE TRANSACAO "
-                + "SET VALOR=?, TIPO=?, DATA=? "
+                + "SET VALOR=?, TIPO=?, DATA=?, ID_USUARIO=? "
                 + "WHERE ID_TRANSACAO=?";
 
         save(sql,
                 objTransacao.getValor(),
                 objTransacao.getTipo(),
                 objTransacao.getData(),
+                objTransacao.getUsuario().getId_usuario(),
                 objTransacao.getId_transacao());
     }
 
     public void excluir(Transacao objTransacao) {
-
         String sql = "DELETE FROM TRANSACAO WHERE ID_TRANSACAO=?";
 
         save(sql, objTransacao.getId_transacao());
     }
 
     private static class TransacaoRowMapper implements RowMapper<Transacao> {
+
+        UsuarioDAO usuarioDao = new UsuarioDAO();
 
         @Override
         public Transacao mapRow(ResultSet rs) throws SQLException {
@@ -64,24 +65,23 @@ public class TransacaoDAO extends GenericoDAO<Transacao> {
             objTransacao.setData(
                     rs.getDate("DATA"));
 
+            objTransacao.setUsuario(
+                    usuarioDao.buscarUsuarioPorId(
+                            rs.getInt("ID_USUARIO")
+                    )
+            );
+
             return objTransacao;
         }
     }
 
     public List<Transacao> buscarTodasTransacoes() {
-
         String sql = "SELECT * FROM TRANSACAO";
-
         return buscarTodos(sql, new TransacaoRowMapper());
     }
 
     public Transacao buscarTransacaoPorId(int id) {
-
-        String sql = "SELECT * FROM TRANSACAO "
-                + "WHERE ID_TRANSACAO = ?";
-
-        return buscarPorId(sql,
-                new TransacaoRowMapper(),
-                id);
+        String sql = "SELECT * FROM TRANSACAO WHERE ID_TRANSACAO = ?";
+        return buscarPorId(sql, new TransacaoRowMapper(), id);
     }
 }

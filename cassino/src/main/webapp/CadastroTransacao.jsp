@@ -21,8 +21,7 @@
 
         <h1>Cadastro Transação</h1>
 
-        <form name="cadastro"
-              method="get"
+        <form name="cadastro" method="get"
               action="${pageContext.request.contextPath}${URL_BASE}/TransacaoControlador">
 
             <input type="hidden" name="opcao" value="${opcao}">
@@ -51,14 +50,42 @@
                 <input type="date"
                        name="dataTransacao"
                        required=""
-                       value="${dataTransacao}"/>
+                       value="${dataTransacao}" />
+            </p>
+
+            <p>
+                <label>Usuário:</label>
+
+                <select name="usuarioTransacao">
+
+                    <c:forEach var="usuarios" items="${listaUsuario}">
+
+                        <c:choose>
+
+                            <c:when test="${usuarios.id_usuario eq usuarioTransacao}">
+                                <option selected=""
+                                        value="${usuarios.id_usuario}">
+                                    ${usuarios.nome}
+                                </option>
+                            </c:when>
+
+                            <c:otherwise>
+                                <option value="${usuarios.id_usuario}">
+                                    ${usuarios.nome}
+                                </option>
+                            </c:otherwise>
+
+                        </c:choose>
+
+                    </c:forEach>
+
+                </select>
+
             </p>
 
             <div class="area-botoes">
 
-                <input type="submit"
-                       value="Salvar"
-                       name="Salvar">
+                <input type="submit" value="Salvar" name="Salvar">
 
                 <a class="btn-link"
                    href="${pageContext.request.contextPath}${URL_BASE}/TransacaoControlador?opcao=cancelar">
@@ -79,19 +106,21 @@
                     <th>VALOR</th>
                     <th>TIPO</th>
                     <th>DATA</th>
+                    <th>USUÁRIO</th>
                     <th>ALTERAR</th>
                     <th>EXCLUIR</th>
                 </tr>
             </c:if>
 
-            <c:forEach var="transacoes" items="${listaTransacao}">
+            <c:forEach var="transacao" items="${listaTransacao}">
 
                 <tr>
 
-                    <td>${transacoes.id_transacao}</td>
-                    <td>${transacoes.valor}</td>
-                    <td>${transacoes.tipo}</td>
-                    <td>${transacoes.data}</td>
+                    <td>${transacao.id_transacao}</td>
+                    <td>${transacao.valor}</td>
+                    <td>${transacao.tipo}</td>
+                    <td>${transacao.data}</td>
+                    <td>${transacao.usuario.nome}</td>
 
                     <td>
 
@@ -100,19 +129,23 @@
 
                             <input type="hidden"
                                    name="idTransacao"
-                                   value="${transacoes.id_transacao}">
+                                   value="${transacao.id_transacao}">
 
                             <input type="hidden"
                                    name="valorTransacao"
-                                   value="${transacoes.valor}">
+                                   value="${transacao.valor}">
 
                             <input type="hidden"
                                    name="tipoTransacao"
-                                   value="${transacoes.tipo}">
+                                   value="${transacao.tipo}">
 
                             <input type="hidden"
                                    name="dataTransacao"
-                                   value="${transacoes.data}">
+                                   value="${transacao.data}">
+
+                            <input type="hidden"
+                                   name="usuarioTransacao"
+                                   value="${transacao.usuario.id_usuario}">
 
                             <input type="hidden"
                                    name="opcao"
@@ -133,19 +166,23 @@
 
                             <input type="hidden"
                                    name="idTransacao"
-                                   value="${transacoes.id_transacao}">
+                                   value="${transacao.id_transacao}">
 
                             <input type="hidden"
                                    name="valorTransacao"
-                                   value="${transacoes.valor}">
+                                   value="${transacao.valor}">
 
                             <input type="hidden"
                                    name="tipoTransacao"
-                                   value="${transacoes.tipo}">
+                                   value="${transacao.tipo}">
 
                             <input type="hidden"
                                    name="dataTransacao"
-                                   value="${transacoes.data}">
+                                   value="${transacao.data}">
+
+                            <input type="hidden"
+                                   name="usuarioTransacao"
+                                   value="${transacao.usuario.id_usuario}">
 
                             <input type="hidden"
                                    name="opcao"

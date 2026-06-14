@@ -4,9 +4,9 @@
  */
 package br.edu.ifsuldeminas.infoh2026.controlador;
 
-import br.edu.ifsuldeminas.infoh2026.modelo.dao.TransacaoDAO;
+import br.edu.ifsuldeminas.infoh2026.modelo.dao.CarteiraDAO;
 import br.edu.ifsuldeminas.infoh2026.modelo.dao.UsuarioDAO;
-import br.edu.ifsuldeminas.infoh2026.modelo.entidade.Transacao;
+import br.edu.ifsuldeminas.infoh2026.modelo.entidade.Carteira;
 import br.edu.ifsuldeminas.infoh2026.modelo.entidade.Usuario;
 import br.edu.ifsuldeminas.infoh2026.servico.WebConstante;
 import jakarta.servlet.RequestDispatcher;
@@ -16,33 +16,31 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.List;
 
 /**
  *
- * @author 12409864678
+ * @author Iagod
  */
-@WebServlet(WebConstante.BASE_PATH + "/TransacaoControlador")
-public class TransacaoControlador extends HttpServlet {
 
-    Transacao objTransacao;
+@WebServlet(WebConstante.BASE_PATH + "/CarteiraControlador")
+public class CarteiraControlador extends HttpServlet {
+
+    Carteira objCarteira;
     UsuarioDAO objUsuarioDao;
-    TransacaoDAO objTransacaoDao;
+    CarteiraDAO objCarteiraDao;
 
-    String idTransacao = "";
-    String valorTransacao = "";
-    String tipoTransacao = "";
-    String dataTransacao = "";
-    String usuarioTransacao = "";
+    String idCarteira = "";
+    String saldoCarteira = "";
+    String usuarioCarteira = "";
     String opcao = "";
 
     @Override
     public void init() throws ServletException {
 
         objUsuarioDao = new UsuarioDAO();
-        objTransacao = new Transacao();
-        objTransacaoDao = new TransacaoDAO();
+        objCarteira = new Carteira();
+        objCarteiraDao = new CarteiraDAO();
 
     }
 
@@ -59,11 +57,9 @@ public class TransacaoControlador extends HttpServlet {
                 opcao = "cadastrar";
             }
 
-            idTransacao = request.getParameter("idTransacao");
-            valorTransacao = request.getParameter("valorTransacao");
-            tipoTransacao = request.getParameter("tipoTransacao");
-            dataTransacao = request.getParameter("dataTransacao");
-            usuarioTransacao = request.getParameter("usuarioTransacao");
+            idCarteira = request.getParameter("idCarteira");
+            saldoCarteira = request.getParameter("saldoCarteira");
+            usuarioCarteira = request.getParameter("usuarioCarteira");
 
             switch (opcao) {
 
@@ -94,7 +90,6 @@ public class TransacaoControlador extends HttpServlet {
                 default:
                     throw new IllegalArgumentException(
                             "Opção inválida " + opcao);
-
             }
 
         } catch (NumberFormatException e) {
@@ -105,7 +100,8 @@ public class TransacaoControlador extends HttpServlet {
 
         } catch (IllegalArgumentException e) {
 
-            response.getWriter().println("Erro: " + e.getMessage());
+            response.getWriter().println(
+                    "Erro: " + e.getMessage());
 
         }
 
@@ -115,22 +111,17 @@ public class TransacaoControlador extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        objTransacao.setValor(
-                Double.valueOf(valorTransacao));
+        objCarteira.setSaldo(
+                Double.valueOf(saldoCarteira));
 
-        objTransacao.setTipo(tipoTransacao);
+        objCarteira.getUsuario().setId_usuario(
+                Integer.valueOf(usuarioCarteira));
 
-        objTransacao.setData(
-                Date.valueOf(dataTransacao));
-
-        objTransacao.getUsuario().setId_usuario(
-                Integer.valueOf(usuarioTransacao));
-
-        objTransacaoDao.salvar(objTransacao);
+        objCarteiraDao.salvar(objCarteira);
 
         request.setAttribute(
                 "mensagem",
-                "Transação cadastrada com sucesso!");
+                "Carteira cadastrada com sucesso!");
 
         encaminharParaPagina(request, response);
 
@@ -141,19 +132,13 @@ public class TransacaoControlador extends HttpServlet {
             throws ServletException, IOException {
 
         request.setAttribute(
-                "idTransacao", idTransacao);
+                "idCarteira", idCarteira);
 
         request.setAttribute(
-                "valorTransacao", valorTransacao);
+                "saldoCarteira", saldoCarteira);
 
         request.setAttribute(
-                "tipoTransacao", tipoTransacao);
-
-        request.setAttribute(
-                "dataTransacao", dataTransacao);
-
-        request.setAttribute(
-                "usuarioTransacao", usuarioTransacao);
+                "usuarioCarteira", usuarioCarteira);
 
         request.setAttribute(
                 "opcao", "confirmarAlterar");
@@ -171,19 +156,13 @@ public class TransacaoControlador extends HttpServlet {
             throws ServletException, IOException {
 
         request.setAttribute(
-                "idTransacao", idTransacao);
+                "idCarteira", idCarteira);
 
         request.setAttribute(
-                "valorTransacao", valorTransacao);
+                "saldoCarteira", saldoCarteira);
 
         request.setAttribute(
-                "tipoTransacao", tipoTransacao);
-
-        request.setAttribute(
-                "dataTransacao", dataTransacao);
-
-        request.setAttribute(
-                "usuarioTransacao", usuarioTransacao);
+                "usuarioCarteira", usuarioCarteira);
 
         request.setAttribute(
                 "opcao", "confirmarExcluir");
@@ -200,21 +179,16 @@ public class TransacaoControlador extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        objTransacao.setId_transacao(
-                Integer.valueOf(idTransacao));
+        objCarteira.setId_carteira(
+                Integer.valueOf(idCarteira));
 
-        objTransacao.setValor(
-                Double.valueOf(valorTransacao));
+        objCarteira.setSaldo(
+                Double.valueOf(saldoCarteira));
 
-        objTransacao.setTipo(tipoTransacao);
+        objCarteira.getUsuario().setId_usuario(
+                Integer.valueOf(usuarioCarteira));
 
-        objTransacao.setData(
-                Date.valueOf(dataTransacao));
-
-        objTransacao.getUsuario().setId_usuario(
-                Integer.valueOf(usuarioTransacao));
-
-        objTransacaoDao.alterar(objTransacao);
+        objCarteiraDao.alterar(objCarteira);
 
         encaminharParaPagina(request, response);
 
@@ -224,10 +198,10 @@ public class TransacaoControlador extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        objTransacao.setId_transacao(
-                Integer.valueOf(idTransacao));
+        objCarteira.setId_carteira(
+                Integer.valueOf(idCarteira));
 
-        objTransacaoDao.excluir(objTransacao);
+        objCarteiraDao.excluir(objCarteira);
 
         encaminharParaPagina(request, response);
 
@@ -244,16 +218,16 @@ public class TransacaoControlador extends HttpServlet {
                 "listaUsuario",
                 listaUsuario);
 
-        List<Transacao> listaTransacao =
-                objTransacaoDao.buscarTodasTransacoes();
+        List<Carteira> listaCarteira =
+                objCarteiraDao.buscarTodasCarteiras();
 
         request.setAttribute(
-                "listaTransacao",
-                listaTransacao);
+                "listaCarteira",
+                listaCarteira);
 
         RequestDispatcher dispatcher =
                 request.getRequestDispatcher(
-                        "/CadastroTransacao.jsp");
+                        "/CadastroCarteira.jsp");
 
         dispatcher.forward(request, response);
 
@@ -264,19 +238,13 @@ public class TransacaoControlador extends HttpServlet {
             throws ServletException, IOException {
 
         request.setAttribute(
-                "idTransacao", "0");
+                "idCarteira", "0");
 
         request.setAttribute(
-                "valorTransacao", "");
+                "saldoCarteira", "");
 
         request.setAttribute(
-                "tipoTransacao", "");
-
-        request.setAttribute(
-                "dataTransacao", "");
-
-        request.setAttribute(
-                "usuarioTransacao", "");
+                "usuarioCarteira", "");
 
         request.setAttribute(
                 "opcao", "cadastrar");
@@ -284,4 +252,5 @@ public class TransacaoControlador extends HttpServlet {
         encaminharParaPagina(request, response);
 
     }
+
 }

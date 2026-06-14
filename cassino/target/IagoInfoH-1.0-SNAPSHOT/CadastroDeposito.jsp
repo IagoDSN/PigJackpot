@@ -1,7 +1,7 @@
 <%-- 
-    Document   : CadastroTransacao
-    Created on : 8 de jun de 2026, 14:45:37
-    Author     : 12409864678
+    Document   : CadastroDeposito
+    Created on : 14 de jun. de 2026, 17:51:43
+    Author     : Iagod
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -12,57 +12,48 @@
         <meta http-equiv="Content-Type" content="text/html; charset=Latin1">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilo.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/forms.css">
-        <title>Cadastro de Transação</title>
+        <title>Cadastro de Depósito</title>
     </head>
 
     <%@include file="Menu.jsp" %>
 
     <body>
 
-        <h1>Cadastro Transação</h1>
+        <h1>Cadastro Depósito</h1>
 
         <form name="cadastro" method="get"
-              action="${pageContext.request.contextPath}${URL_BASE}/TransacaoControlador">
+              action="${pageContext.request.contextPath}${URL_BASE}/DepositoControlador">
 
             <input type="hidden" name="opcao" value="${opcao}">
-            <input type="hidden" name="idTransacao" value="${idTransacao}">
-
-            <p>
-                <label>Valor:</label>
-                <input type="text"
-                       name="valorTransacao"
-                       required=""
-                       value="${valorTransacao}"
-                       size="10"/>
-            </p>
-
-            <p>
-                <label>Tipo:</label>
-                <input type="text"
-                       name="tipoTransacao"
-                       required=""
-                       value="${tipoTransacao}"
-                       size="20"/>
-            </p>
+            <input type="hidden" name="idDeposito" value="${idDeposito}">
 
             <p>
                 <label>Data:</label>
                 <input type="date"
-                       name="dataTransacao"
+                       name="dataDeposito"
                        required=""
-                       value="${dataTransacao}" />
+                       value="${dataDeposito}" />
+            </p>
+
+            <p>
+                <label>Valor Total:</label>
+                <input type="text"
+                       name="valorTotalDeposito"
+                       required=""
+                       value="${valorTotalDeposito}"
+                       size="10"/>
             </p>
 
             <p>
                 <label>Usuário:</label>
 
-                <select name="usuarioTransacao">
+                <select name="usuarioDeposito">
 
                     <c:forEach var="usuarios" items="${listaUsuario}">
 
                         <c:choose>
 
-                            <c:when test="${usuarios.id_usuario eq usuarioTransacao}">
+                            <c:when test="${usuarios.id_usuario eq usuarioDeposito}">
                                 <option selected=""
                                         value="${usuarios.id_usuario}">
                                     ${usuarios.nome}
@@ -88,7 +79,7 @@
                 <input type="submit" value="Salvar" name="Salvar">
 
                 <a class="btn-link"
-                   href="${pageContext.request.contextPath}${URL_BASE}/TransacaoControlador?opcao=cancelar">
+                   href="${pageContext.request.contextPath}${URL_BASE}/DepositoControlador?opcao=cancelar">
                     Cancelar
                 </a>
 
@@ -100,52 +91,47 @@
 
         <table border="1">
 
-            <c:if test="${not empty listaTransacao}">
+            <c:if test="${not empty listaDeposito}">
                 <tr>
                     <th>ID</th>
-                    <th>VALOR</th>
-                    <th>TIPO</th>
                     <th>DATA</th>
+                    <th>VALOR TOTAL</th>
                     <th>USUÁRIO</th>
                     <th>ALTERAR</th>
                     <th>EXCLUIR</th>
                 </tr>
             </c:if>
 
-            <c:forEach var="transacao" items="${listaTransacao}">
+            <c:forEach var="depositos" items="${listaDeposito}">
 
                 <tr>
 
-                    <td>${transacao.id_transacao}</td>
-                    <td>${transacao.valor}</td>
-                    <td>${transacao.tipo}</td>
-                    <td>${transacao.data}</td>
-                    <td>${transacao.usuario.nome}</td>
+                    <td>${depositos.id_deposito}</td>
+                    <td>${depositos.data}</td>
+                    <td>${depositos.valor_total}</td>
+                    <td>${depositos.usuario.nome}</td>
 
                     <td>
 
-                        <form method="get"
-                              action="${pageContext.request.contextPath}${URL_BASE}/TransacaoControlador">
+                        <form name="cadastro"
+                              method="get"
+                              action="${pageContext.request.contextPath}${URL_BASE}/DepositoControlador">
 
                             <input type="hidden"
-                                   name="idTransacao"
-                                   value="${transacao.id_transacao}">
+                                   name="idDeposito"
+                                   value="${depositos.id_deposito}">
 
                             <input type="hidden"
-                                   name="valorTransacao"
-                                   value="${transacao.valor}">
+                                   name="dataDeposito"
+                                   value="${depositos.data}">
 
                             <input type="hidden"
-                                   name="tipoTransacao"
-                                   value="${transacao.tipo}">
+                                   name="valorTotalDeposito"
+                                   value="${depositos.valor_total}">
 
                             <input type="hidden"
-                                   name="dataTransacao"
-                                   value="${transacao.data}">
-
-                            <input type="hidden"
-                                   name="usuarioTransacao"
-                                   value="${transacao.usuario.id_usuario}">
+                                   name="usuarioDeposito"
+                                   value="${depositos.usuario.id_usuario}">
 
                             <input type="hidden"
                                    name="opcao"
@@ -161,28 +147,25 @@
 
                     <td>
 
-                        <form method="get"
-                              action="${pageContext.request.contextPath}${URL_BASE}/TransacaoControlador">
+                        <form name="cadastro"
+                              method="get"
+                              action="${pageContext.request.contextPath}${URL_BASE}/DepositoControlador">
 
                             <input type="hidden"
-                                   name="idTransacao"
-                                   value="${transacao.id_transacao}">
+                                   name="idDeposito"
+                                   value="${depositos.id_deposito}">
 
                             <input type="hidden"
-                                   name="valorTransacao"
-                                   value="${transacao.valor}">
+                                   name="dataDeposito"
+                                   value="${depositos.data}">
 
                             <input type="hidden"
-                                   name="tipoTransacao"
-                                   value="${transacao.tipo}">
+                                   name="valorTotalDeposito"
+                                   value="${depositos.valor_total}">
 
                             <input type="hidden"
-                                   name="dataTransacao"
-                                   value="${transacao.data}">
-
-                            <input type="hidden"
-                                   name="usuarioTransacao"
-                                   value="${transacao.usuario.id_usuario}">
+                                   name="usuarioDeposito"
+                                   value="${depositos.usuario.id_usuario}">
 
                             <input type="hidden"
                                    name="opcao"
