@@ -2,6 +2,7 @@ br\edu\ifsuldeminas\infoh2026\modelo\dao\DepositoDAO$DepositoRowMapper.class
 br\edu\ifsuldeminas\infoh2026\modelo\dao\UsuarioDAO$UsuarioRowMapper.class
 br\edu\ifsuldeminas\infoh2026\modelo\entidade\Transacao.class
 br\edu\ifsuldeminas\infoh2026\modelo\entidade\Deposito.class
+br\edu\ifsuldeminas\infoh2026\controlador\RankingControlador.class
 br\edu\ifsuldeminas\infoh2026\resources\JakartaEE10Resource.class
 br\edu\ifsuldeminas\infoh2026\controlador\ConquistaControlador.class
 br\edu\ifsuldeminas\infoh2026\modelo\dao\CarteiraDAO.class
