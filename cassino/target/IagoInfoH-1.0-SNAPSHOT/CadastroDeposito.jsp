@@ -184,6 +184,31 @@
             </c:forEach>
 
         </table>
-
+    
+    <footer class="footer-cassino">
+            <div class="footer-conteudo">
+                <div>
+                    <h2>Pig Jackpot</h2>
+                </div>
+                <div>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-redes">
+                        <a href="https://instagram.com/seuUsuario" target="_blank">
+                            <img class="redes" src="${pageContext.request.contextPath}/assets/instagram.png">
+                        </a>
+                        <a href="https://github.com/IagoDSN/PigJackpot" target="_blank">
+                            <img class="redes" src="${pageContext.request.contextPath}/assets/github.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copy">
+                © 2026 Pig Jackpot - Todos os direitos reservados.
+            </div>
+        </footer>
     </body>
 </html>

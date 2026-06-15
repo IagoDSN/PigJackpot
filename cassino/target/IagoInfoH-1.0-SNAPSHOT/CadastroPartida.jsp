@@ -1,7 +1,13 @@
 <%-- 
-    Document   : CadastroTransacao
-    Created on : 8 de jun de 2026, 14:45:37
-    Author     : 12409864678
+    Document   : CadastroPartida
+    Created on : 15 de jun de 2026, 13:46:31
+    Author     : 13410289682
+--%>
+
+<%-- 
+    Document   : CadastroPartida
+    Created on : 15 de jun de 2026
+    Author     : Iago
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -12,57 +18,48 @@
         <meta http-equiv="Content-Type" content="text/html; charset=Latin1">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilo.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/forms.css">
-        <title>Cadastro de Transação</title>
+        <title>Cadastro de Partida</title>
     </head>
 
     <%@include file="Menu.jsp" %>
 
     <body>
 
-        <h1>Cadastro Transação</h1>
+        <h1>Cadastro Partida</h1>
 
         <form name="cadastro" method="get"
-              action="${pageContext.request.contextPath}${URL_BASE}/TransacaoControlador">
+              action="${pageContext.request.contextPath}${URL_BASE}/PartidaControlador">
 
             <input type="hidden" name="opcao" value="${opcao}">
-            <input type="hidden" name="idTransacao" value="${idTransacao}">
-
-            <p>
-                <label>Valor:</label>
-                <input type="text"
-                       name="valorTransacao"
-                       required=""
-                       value="${valorTransacao}"
-                       size="10"/>
-            </p>
-
-            <p>
-                <label>Tipo:</label>
-                <input type="text"
-                       name="tipoTransacao"
-                       required=""
-                       value="${tipoTransacao}"
-                       size="20"/>
-            </p>
+            <input type="hidden" name="idPartida" value="${idPartida}">
 
             <p>
                 <label>Data:</label>
                 <input type="date"
-                       name="dataTransacao"
+                       name="dataPartida"
                        required=""
-                       value="${dataTransacao}" />
+                       value="${dataPartida}" />
+            </p>
+
+            <p>
+                <label>Resultado:</label>
+                <input type="text"
+                       name="resultadoPartida"
+                       required=""
+                       value="${resultadoPartida}"
+                       size="30"/>
             </p>
 
             <p>
                 <label>Usuário:</label>
 
-                <select name="usuarioTransacao">
+                <select name="usuarioPartida">
 
                     <c:forEach var="usuarios" items="${listaUsuario}">
 
                         <c:choose>
 
-                            <c:when test="${usuarios.id_usuario eq usuarioTransacao}">
+                            <c:when test="${usuarios.id_usuario eq usuarioPartida}">
                                 <option selected=""
                                         value="${usuarios.id_usuario}">
                                     ${usuarios.nome}
@@ -83,12 +80,42 @@
 
             </p>
 
+            <p>
+                <label>Jogo:</label>
+
+                <select name="jogoPartida">
+
+                    <c:forEach var="jogos" items="${listaJogo}">
+
+                        <c:choose>
+
+                            <c:when test="${jogos.id_jogo eq jogoPartida}">
+                                <option selected=""
+                                        value="${jogos.id_jogo}">
+                                    ${jogos.nome}
+                                </option>
+                            </c:when>
+
+                            <c:otherwise>
+                                <option value="${jogos.id_jogo}">
+                                    ${jogos.nome}
+                                </option>
+                            </c:otherwise>
+
+                        </c:choose>
+
+                    </c:forEach>
+
+                </select>
+
+            </p>
+
             <div class="area-botoes">
 
                 <input type="submit" value="Salvar" name="Salvar">
 
                 <a class="btn-link"
-                   href="${pageContext.request.contextPath}${URL_BASE}/TransacaoControlador?opcao=cancelar">
+                   href="${pageContext.request.contextPath}${URL_BASE}/PartidaControlador?opcao=cancelar">
                     Cancelar
                 </a>
 
@@ -100,52 +127,52 @@
 
         <table border="1">
 
-            <c:if test="${not empty listaTransacao}">
+            <c:if test="${not empty listaPartida}">
                 <tr>
                     <th>ID</th>
-                    <th>VALOR</th>
-                    <th>TIPO</th>
                     <th>DATA</th>
+                    <th>RESULTADO</th>
                     <th>USUÁRIO</th>
+                    <th>JOGO</th>
                     <th>ALTERAR</th>
                     <th>EXCLUIR</th>
                 </tr>
             </c:if>
 
-            <c:forEach var="transacao" items="${listaTransacao}">
+            <c:forEach var="partidas" items="${listaPartida}">
 
                 <tr>
 
-                    <td>${transacao.id_transacao}</td>
-                    <td>${transacao.valor}</td>
-                    <td>${transacao.tipo}</td>
-                    <td>${transacao.data}</td>
-                    <td>${transacao.usuario.nome}</td>
+                    <td>${partidas.id_partida}</td>
+                    <td>${partidas.data}</td>
+                    <td>${partidas.resultado}</td>
+                    <td>${partidas.usuario.nome}</td>
+                    <td>${partidas.jogo.nome}</td>
 
                     <td>
 
                         <form method="get"
-                              action="${pageContext.request.contextPath}${URL_BASE}/TransacaoControlador">
+                              action="${pageContext.request.contextPath}${URL_BASE}/PartidaControlador">
 
                             <input type="hidden"
-                                   name="idTransacao"
-                                   value="${transacao.id_transacao}">
+                                   name="idPartida"
+                                   value="${partidas.id_partida}">
 
                             <input type="hidden"
-                                   name="valorTransacao"
-                                   value="${transacao.valor}">
+                                   name="dataPartida"
+                                   value="${partidas.data}">
 
                             <input type="hidden"
-                                   name="tipoTransacao"
-                                   value="${transacao.tipo}">
+                                   name="resultadoPartida"
+                                   value="${partidas.resultado}">
 
                             <input type="hidden"
-                                   name="dataTransacao"
-                                   value="${transacao.data}">
+                                   name="usuarioPartida"
+                                   value="${partidas.usuario.id_usuario}">
 
                             <input type="hidden"
-                                   name="usuarioTransacao"
-                                   value="${transacao.usuario.id_usuario}">
+                                   name="jogoPartida"
+                                   value="${partidas.jogo.id_jogo}">
 
                             <input type="hidden"
                                    name="opcao"
@@ -162,27 +189,27 @@
                     <td>
 
                         <form method="get"
-                              action="${pageContext.request.contextPath}${URL_BASE}/TransacaoControlador">
+                              action="${pageContext.request.contextPath}${URL_BASE}/PartidaControlador">
 
                             <input type="hidden"
-                                   name="idTransacao"
-                                   value="${transacao.id_transacao}">
+                                   name="idPartida"
+                                   value="${partidas.id_partida}">
 
                             <input type="hidden"
-                                   name="valorTransacao"
-                                   value="${transacao.valor}">
+                                   name="dataPartida"
+                                   value="${partidas.data}">
 
                             <input type="hidden"
-                                   name="tipoTransacao"
-                                   value="${transacao.tipo}">
+                                   name="resultadoPartida"
+                                   value="${partidas.resultado}">
 
                             <input type="hidden"
-                                   name="dataTransacao"
-                                   value="${transacao.data}">
+                                   name="usuarioPartida"
+                                   value="${partidas.usuario.id_usuario}">
 
                             <input type="hidden"
-                                   name="usuarioTransacao"
-                                   value="${transacao.usuario.id_usuario}">
+                                   name="jogoPartida"
+                                   value="${partidas.jogo.id_jogo}">
 
                             <input type="hidden"
                                    name="opcao"
@@ -201,7 +228,7 @@
             </c:forEach>
 
         </table>
-
+        
     <footer class="footer-cassino">
             <div class="footer-conteudo">
                 <div>
