@@ -44,11 +44,32 @@
 }
 .conteudo-jogo a{
     display: block;
-    margin-top: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto;
     text-align: center;
     background: #FFD700;
     color: black;
     padding: 12px;
     border-radius: 10px;
     text-decoration: none;
+}
+.cadastros{
+    width: 100%;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.cadastros .card-jogo{
+    min-height: 220px;
+}
+
+.cadastros .conteudo-jogo{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.cadastros .conteudo-jogo a{
+    margin-top: auto;
 }

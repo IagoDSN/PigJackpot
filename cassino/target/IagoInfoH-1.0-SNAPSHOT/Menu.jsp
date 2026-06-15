@@ -4,14 +4,6 @@
     <img class="logo" src="${pageContext.request.contextPath}/assets/logo.png">
     <ul>
         <li><a class="contex" href="${pageContext.request.contextPath}${URL_BASE}/HomeControlador?opcao=cancelar">HOME</a></li>
-        <li><a class="contex" href="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador?opcao=cancelar">USUÁRIO</a></li>
-        <li><a class="contex" href="${pageContext.request.contextPath}${URL_BASE}/ConquistaControlador?opcao=cancelar">CONQUISTA</a></li>
-        <li><a class="contex" href="${pageContext.request.contextPath}${URL_BASE}/JogoControlador?opcao=cancelar">JOGO</a></li>
-        <li><a class="contex" href="${pageContext.request.contextPath}${URL_BASE}/SaqueControlador?opcao=cancelar">SAQUE</a></li>
-        <li><a class="contex" href="${pageContext.request.contextPath}${URL_BASE}/TransacaoControlador?opcao=cancelar">TRANSAÇÃO</a></li>
-        <li><a class="contex" href="${pageContext.request.contextPath}${URL_BASE}/CarteiraControlador?opcao=cancelar">CARTEIRA</a></li>
-        <li><a class="contex" href="${pageContext.request.contextPath}${URL_BASE}/DepositoControlador?opcao=cancelar">DEPOSITO</a></li>
-        <li><a class="contex" href="${pageContext.request.contextPath}${URL_BASE}/PartidaControlador?opcao=cancelar">PARTIDA</a></li>
         <li><a class="contex" href="${pageContext.request.contextPath}/login.jsp">LOGIN</a></li>
         <li><a class="contex" href="${pageContext.request.contextPath}/logout.jsp">LOGOUT</a></li>
 
