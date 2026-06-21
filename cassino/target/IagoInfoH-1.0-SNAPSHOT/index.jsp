@@ -28,7 +28,7 @@
         <div class="card-jogo">
             <div class="conteudo-jogo">
                 <h2>Usuário</h2>
-                <p>#</p>
+                <p>Sem chave estrangeira</p>
                 <a href="${pageContext.request.contextPath}${URL_BASE}/UsuarioControlador?opcao=cancelar">Acessar</a>
             </div>
         </div>
@@ -36,7 +36,7 @@
         <div class="card-jogo">
             <div class="conteudo-jogo">
                 <h2>Conquista</h2>
-                <p>#</p>
+                <p>Sem chave estrangeira</p>
                 <a href="${pageContext.request.contextPath}${URL_BASE}/ConquistaControlador?opcao=cancelar">Acessar</a>
             </div>
         </div>
@@ -44,7 +44,7 @@
         <div class="card-jogo">
             <div class="conteudo-jogo">
                 <h2>Jogo</h2>
-                <p>#</p>
+                <p>Sem chave estrangeira</p>
                 <a href="${pageContext.request.contextPath}${URL_BASE}/JogoControlador?opcao=cancelar">Acessar</a>
             </div>
         </div>
@@ -52,19 +52,15 @@
         <div class="card-jogo">
             <div class="conteudo-jogo">
                 <h2>Saque</h2>
-                <p>#</p>
+                <p>Com chave estrangeira</p>
                 <a href="${pageContext.request.contextPath}${URL_BASE}/SaqueControlador?opcao=cancelar">Acessar</a>
             </div>
         </div>
 
-    </div>
-
-    <div class="linha-jogos" style="margin-top: 40px;">
-
         <div class="card-jogo">
             <div class="conteudo-jogo">
                 <h2>Transação</h2>
-                <p>#</p>
+                <p>Com chave estrangeira</p>
                 <a href="${pageContext.request.contextPath}${URL_BASE}/TransacaoControlador?opcao=cancelar">Acessar</a>
             </div>
         </div>
@@ -72,7 +68,7 @@
         <div class="card-jogo">
             <div class="conteudo-jogo">
                 <h2>Carteira</h2>
-                <p>#</p>
+                <p>Com chave estrangeira</p>
                 <a href="${pageContext.request.contextPath}${URL_BASE}/CarteiraControlador?opcao=cancelar">Acessar</a>
             </div>
         </div>
@@ -80,7 +76,7 @@
         <div class="card-jogo">
             <div class="conteudo-jogo">
                 <h2>Depósito</h2>
-                <p>#</p>
+                <p>Com chave estrangeira</p>
                 <a href="${pageContext.request.contextPath}${URL_BASE}/DepositoControlador?opcao=cancelar">Acessar</a>
             </div>
         </div>
@@ -88,8 +84,32 @@
         <div class="card-jogo">
             <div class="conteudo-jogo">
                 <h2>Partida</h2>
-                <p>#</p>
+                <p>Com chave estrangeira</p>
                 <a href="${pageContext.request.contextPath}${URL_BASE}/PartidaControlador?opcao=cancelar">Acessar</a>
+            </div>
+        </div>
+
+        <div class="card-jogo">
+            <div class="conteudo-jogo">
+                <h2>Aposta</h2>
+                <p>Com chave estrangeira</p>
+                <a href="${pageContext.request.contextPath}${URL_BASE}/ApostaControlador?opcao=cancelar">Acessar</a>
+            </div>
+        </div>
+
+        <div class="card-jogo">
+            <div class="conteudo-jogo">
+                <h2>Bônus</h2>
+                <p>Com chave estrangeira</p>
+                <a href="${pageContext.request.contextPath}${URL_BASE}/BonusControlador?opcao=cancelar">Acessar</a>
+            </div>
+        </div>
+            
+        <div class="card-jogo">
+            <div class="conteudo-jogo">
+                <h2>UsuarioConquista</h2>
+                <p>Com chave estrangeira</p>
+                <a href="${pageContext.request.contextPath}${URL_BASE}/UsuarioConquistaControlador?opcao=cancelar">Acessar</a>
             </div>
         </div>
 

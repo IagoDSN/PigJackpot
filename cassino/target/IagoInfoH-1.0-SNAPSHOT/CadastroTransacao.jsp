@@ -29,7 +29,7 @@
 
             <p>
                 <label>Valor:</label>
-                <input type="text"
+                <input type="number"
                        name="valorTransacao"
                        required=""
                        value="${valorTransacao}"

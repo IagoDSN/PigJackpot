@@ -29,7 +29,7 @@
 
             <p>
                 <label>Saldo:</label>
-                <input type="text"
+                <input type="number"
                        name="saldoCarteira"
                        required=""
                        value="${saldoCarteira}"

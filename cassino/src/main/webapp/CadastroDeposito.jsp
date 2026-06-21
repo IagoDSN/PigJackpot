@@ -37,7 +37,7 @@
 
             <p>
                 <label>Valor Total:</label>
-                <input type="text"
+                <input type="number"
                        name="valorTotalDeposito"
                        required=""
                        value="${valorTotalDeposito}"

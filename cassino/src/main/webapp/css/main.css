@@ -2,73 +2,81 @@
     width: 100%;
     margin-top: 80px;
 }
+
 .titulo-jogos{
     text-align: center;
     color: #FFD700;
     font-size: 42px;
     margin-bottom: 50px;
 }
+
 .linha-jogos{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
     justify-content: center;
-    gap: 50px;
-    width: 100%;
+    gap: 40px;
 }
+
 .card-jogo{
-    width: 320px;
+    width: 100%;
+    max-width: 420px;
     background: #1b1b1b;
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid #D19027;
-    flex-shrink: 0;
-    transition: 0.8s;
+    transition: .4s;
+    display: flex;
+    flex-direction: column;
 }
+
 .card-jogo:hover{
     transform: translateY(-10px);
     box-shadow: 0 0 20px #FFD700;
 }
+
 .card-jogo img{
     width: 100%;
     height: 220px;
     object-fit: cover;
 }
+
 .conteudo-jogo{
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
+
 .conteudo-jogo h2{
     color: #FFD700;
+    margin-bottom: 15px;
 }
+
 .conteudo-jogo p{
     color: white;
+    margin-bottom: 20px;
+    flex: 1;
 }
+
 .conteudo-jogo a{
     display: block;
-    margin-top: 20px;
+    width: 100%;
+    box-sizing: border-box;
     text-align: center;
     background: #FFD700;
     color: black;
     padding: 12px;
     border-radius: 10px;
     text-decoration: none;
-    width: 100%;
-    box-sizing: border-box;
+    font-weight: bold;
+    transition: .3s;
 }
+
+.conteudo-jogo a:hover{
+    background: #D19027;
+}
+
 .cadastros{
     width: 100%;
-    margin-top: 80px;
-    margin-bottom: 80px;
-}
-
-.cadastros .card-jogo{
-    width: 320px;
-    height: auto;
-}
-
-.cadastros .conteudo-jogo{
-    padding: 20px;
-}
-
-.cadastros .conteudo-jogo a{
-    margin-top: auto;
+    margin: 80px auto;
 }
